@@ -91,28 +91,4 @@ class OptionDataModel {
     );
   }
 
-  // some time nse api not working in that case i can use this dummy
-  factory OptionDataModel.dummy(int index) {
-    return OptionDataModel(
-      strikePrice: '${17000 + index * 50}',
-      bidQtyCall: '${100 + index * 5}',
-      bidPriceCall: '${(100.50 + index * 0.2).toStringAsFixed(2)}',
-      askPriceCall: '${(101.00 + index * 0.2).toStringAsFixed(2)}',
-      askQtyCall: '${110 + index * 5}',
-      ltpCall: '${(100.80 + index * 0.2).toStringAsFixed(2)}',
-      changeCall: '${(index % 2 == 0 ? '+' : '-')}${(0.5 + index * 0.1).toStringAsFixed(2)}',
-      volumeCall: '${1000 + index * 100}',
-      oiCall: '${50000 + index * 1000}',
-      ivCall: '${(25.0 + index * 0.1).toStringAsFixed(2)}',
-      bidQtyPut: '${90 + index * 4}',
-      bidPricePut: '${(90.50 + index * 0.2).toStringAsFixed(2)}',
-      askPricePut: '${(91.00 + index * 0.2).toStringAsFixed(2)}',
-      askQtyPut: '${100 + index * 4}',
-      ltpPut: '${(90.80 + index * 0.2).toStringAsFixed(2)}',
-      changePut: '${(index % 3 == 0 ? '+' : '-')}${(0.4 + index * 0.1).toStringAsFixed(2)}',
-      volumePut: '${900 + index * 90}',
-      oiPut: '${45000 + index * 900}',
-      ivPut: '${(24.5 + index * 0.1).toStringAsFixed(2)}',
-    );
-  }
 }

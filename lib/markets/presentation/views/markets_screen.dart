@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../shared/presentation/widgets/data_cell_widget.dart';
-import '../viewmodels/option_chain_viewmodel.dart';
+import '../viewmodels/markets_viewmodel.dart';
 
-class OptionChainTable extends StatelessWidget {
-  const OptionChainTable({Key? key}) : super(key: key);
+class MarketsScreen extends StatelessWidget {
+  const MarketsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<OptionChainViewModel>(
+    return Consumer<MarketsViewModel>(
       builder: (context, viewModel, child) {
         if (viewModel.isLoading) {
           return const Center(child: CircularProgressIndicator());
         }
 
         if (viewModel.errorMessage != null) {
-          return Center(child: Text(viewModel.errorMessage!));
+          return Center(child: Text('Error: ${viewModel.errorMessage!}'));
         }
 
+        if (viewModel.optionData.isEmpty) {
+          return const Center(child: Text('No real-time market data available.'));
+        }
         return Column(
           children: [
             _mainHeader(),
@@ -72,7 +75,7 @@ class OptionChainTable extends StatelessWidget {
     );
   }
 
-  Widget _buildTableHeader(OptionChainViewModel viewModel) {
+  Widget _buildTableHeader(MarketsViewModel viewModel) {
     const cellWidth = 80.0;
     const strikeFixedWidth = 100.0;
     return Container(
@@ -260,7 +263,7 @@ class OptionChainTable extends StatelessWidget {
     );
   }
 
-  Widget _buildLeftData(OptionChainViewModel viewModel) {
+  Widget _buildLeftData(MarketsViewModel viewModel) {
     const double cellWidth = 80.0;
     const double cellHeight = 40.0;
     const int numColumns = 9;
@@ -275,7 +278,7 @@ class OptionChainTable extends StatelessWidget {
           child: ListView.separated(
             controller: viewModel.leftDataVerticalScrollController,
             separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
+            const Divider(),
             itemCount: viewModel.optionData.length,
             itemBuilder: (context, index) {
               final data = viewModel.optionData[index];
@@ -306,7 +309,7 @@ class OptionChainTable extends StatelessWidget {
     );
   }
 
-  Widget _buildMiddleData(OptionChainViewModel viewModel) {
+  Widget _buildMiddleData(MarketsViewModel viewModel) {
     const double strikeFixedWidth = 100.0;
     const double cellHeight = 40.0;
 
@@ -338,7 +341,7 @@ class OptionChainTable extends StatelessWidget {
     );
   }
 
-  Widget _buildRightData(OptionChainViewModel viewModel) {
+  Widget _buildRightData(MarketsViewModel viewModel) {
     const double cellWidth = 80.0;
     const double cellHeight = 40.0;
     const int numColumns = 9;
@@ -352,7 +355,7 @@ class OptionChainTable extends StatelessWidget {
           child: ListView.separated(
             controller: viewModel.rightDataVerticalScrollController,
             separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
+            const Divider(),
             itemCount: viewModel.optionData.length,
             itemBuilder: (context, index) {
               final data = viewModel.optionData[index];
