@@ -1,6 +1,9 @@
-// lib/utils/service_locator.dart
 import 'package:get_it/get_it.dart';
 
+import '../../markets/data/datasources/market_data_source.dart';
+import '../../markets/data/repositories/market_repository.dart';
+import '../../markets/domain/repositories/i_market_repository.dart';
+import '../../markets/presentation/viewmodels/markets_viewmodel.dart';
 import '../../option_trading/data/datasources/option_chain_remote_data_source.dart';
 import '../../option_trading/data/repositories/option_data_repository.dart';
 import '../../option_trading/domain/repositories/i_option_repository.dart';
@@ -32,4 +35,11 @@ void setupLocator() {
   sl.registerLazySingleton(() => GetOptionChainUseCase(sl()));
 
   sl.registerFactory(() => OptionChainViewModel(sl()));
+
+  // Markets
+  sl.registerFactory(() => MarketsViewModel(sl()));
+  sl.registerLazySingleton<MarketRepository>(
+          () => MarketRepositoryImpl(sl()));
+  sl.registerLazySingleton<MarketDataSource>(
+          () => MarketWebSocketDataSourceImpl());
 }

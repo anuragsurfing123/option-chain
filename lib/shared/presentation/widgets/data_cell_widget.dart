@@ -26,7 +26,7 @@ class DataCellWidget extends StatelessWidget {
       width: width,
       child: Center(
         child: Text(
-          num.parse(text).toStringAsFixed(2),
+          text,
           style: TextStyle(color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
           textAlign: TextAlign.center,
         ),

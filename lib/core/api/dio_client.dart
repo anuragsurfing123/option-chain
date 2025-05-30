@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'api_constants.dart';
 import '../errors/api_exceptions.dart';
 import '../errors/app_error.dart';
-import 'package:cookie_jar/cookie_jar.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 
 class DioClient {
   late final Dio _dio;

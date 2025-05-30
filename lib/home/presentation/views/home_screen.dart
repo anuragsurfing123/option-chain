@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'option_chain_table.dart';
+import '../../../../markets/presentation/views/markets_screen.dart';
+import '../../../../option_trading/presentation/views/option_chain_table.dart'; // Keep this import as is
 
-class OptionTradingHome extends StatefulWidget {
-  const OptionTradingHome({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget { // Renamed class
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<OptionTradingHome> createState() => _OptionTradingHomeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _OptionTradingHomeState extends State<OptionTradingHome> {
-  int _currentIndex = 1;
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
 
   late final List<Widget> _widgetOptions;
 
@@ -17,7 +18,7 @@ class _OptionTradingHomeState extends State<OptionTradingHome> {
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      const Center(child: Text('Markets Screen', style: TextStyle(color: Colors.grey, fontSize: 24))),
+      const MarketsScreen(),
       const OptionChainTable(),
       const Center(child: Text('Portfolio Screen', style: TextStyle(color: Colors.grey, fontSize: 24))),
       const Center(child: Text('Orders Screen', style: TextStyle(color: Colors.grey, fontSize: 24))),
@@ -30,7 +31,7 @@ class _OptionTradingHomeState extends State<OptionTradingHome> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Option Trading'),
+          title: const Text('Option Trading'),
           backgroundColor: Colors.white
       ),
       body: IndexedStack(

@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/utils/service_locator.dart';
+import 'home/presentation/views/home_screen.dart';
+import 'markets/presentation/viewmodels/markets_viewmodel.dart';
 import 'option_trading/presentation/viewmodels/option_chain_viewmodel.dart';
-import 'option_trading/presentation/views/option_trading_home.dart';
 
 void main() {
   setupLocator();
@@ -23,8 +24,11 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<OptionChainViewModel>(
             create: (context) => sl<OptionChainViewModel>(),
           ),
+          ChangeNotifierProvider<MarketsViewModel>( // NEW: Provide MarketsViewModel
+            create: (context) => sl<MarketsViewModel>(),
+          ),
         ],
-        child: const OptionTradingHome(),
+        child: const HomeScreen(),
       ),
     );
   }
