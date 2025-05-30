@@ -1,4 +1,4 @@
-# fyers_option_trading
+# Option Chain
 
 A new Flutter project.
 
